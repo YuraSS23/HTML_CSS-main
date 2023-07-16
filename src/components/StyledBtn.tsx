@@ -34,7 +34,7 @@ export const StyledBtn = styled.button<StyledBtnPropsType>`
     color: snow;
 
     &:hover {
-      background-color: #2b00ff;
+      background-color: rgba(133, 114, 243, 0.53);
     }
   `}
   
