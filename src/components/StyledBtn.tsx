@@ -1,28 +1,47 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {MyAnimation} from "../styles/animations/Animations";
 
-export const StyledBtn = styled.button`
+type StyledBtnPropsType = {
+    color?: string
+    fontSize?: string
+    btnType?: "outlined" | "primary"
+    active?: boolean
+}
+
+export const StyledBtn = styled.button<StyledBtnPropsType>`
   border: none;
-  background-color: #00deff;
+  border-radius: 10px;
   padding: 10px 20px;
-  color: snow;
-  font-size: 2rem;
+  font-size: ${props => props.fontSize || "2rem"};
   font-weight: bold;
-
-  &:hover {
-    background-color: #2b00ff;
-  }
-
-  &:last-child {
-    background-color: #ffa265;
-  }
-`
-export const SuperButton = styled(StyledBtn)`
-  border-radius: 5px;
-  background-color: #fff800;
-  color: black;
   
-  &:hover {
-    animation: ${MyAnimation} 2s ease-in-out infinite;
-  }
+
+  ${props => props.btnType === "outlined" && css<StyledBtnPropsType>`
+  border: 2px solid ${props => props.color || "#fb3f78"};
+  color: ${props => props.color || "#fb3f78"};
+  background-color: transparent;
+    
+    &:hover {
+      border-color: darkorchid;
+      background-color: transparent;
+      color: indigo;
+    }
+    
+`}
+  
+  ${props => props.btnType === "primary" && css<StyledBtnPropsType>`
+    background-color: ${props => props.color || "#fb3f78"};
+    color: snow;
+
+    &:hover {
+      background-color: #2b00ff;
+    }
+  `}
+  
+   ${props => props.active && css<StyledBtnPropsType>`
+     box-shadow: 5px 5px 5px 5px rgba(190, 80, 142, 0.65);
+   `
+}
+  
+  
 `
